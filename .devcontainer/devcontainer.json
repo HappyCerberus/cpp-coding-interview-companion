@@ -1,0 +1,14 @@
+{
+	"image": "happycerberus/cpp-course:2.0.0",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-vscode.cpptools",
+				"ms-vscode.cpptools-themes",
+				"ms-vscode-remote.remote-containers",
+				"ms-vscode.cpptools-extension-pack",
+				"BazelBuild.vscode-bazel"
+			]
+		}
+	}
+}

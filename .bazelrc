@@ -1,0 +1,27 @@
+common --enable_bzlmod
+
+build --client_env=CC=gcc
+build --cxxopt="-std=c++23" --cxxopt="-pedantic" --cxxopt="-Wall" --cxxopt="-Wextra" --cxxopt="-Werror" --cxxopt="-Wfatal-errors"
+test --test_output=errors
+
+# Release build mode: --config=release
+build:release --cxxopt="-O3"
+build:release --platform_suffix="release"
+build:release --compilation_mode=opt
+
+# Debug build mode: --config=debug
+build:debug --cxxopt="-ggdb3" --cxxopt="-Og" --cxxopt="-fno-omit-frame-pointer"
+build:debug --platform_suffix="debug"
+build:debug --compilation_mode=dbg
+
+# Undefined sanitizer build mode: --config=ubsan
+build:ubsan --cxxopt="-ggdb3" --cxxopt="-Og" --cxxopt="-fno-omit-frame-pointer" --cxxopt="-fsanitize=undefined"
+build:ubsan --linkopt="-fsanitize=undefined"
+build:ubsan --platform_suffix="ub"
+build:ubsan --compilation_mode=dbg
+
+# Address sanitizer build mode: --config=addrsan
+build:addrsan --cxxopt="-ggdb3" --cxxopt="-Og" --cxxopt="-fno-omit-frame-pointer" --cxxopt="-fsanitize=address"
+build:addrsan --linkopt="-fsanitize=address"
+build:addrsan --platform_suffix="addr"
+build:addrsan --compilation_mode=dbg
